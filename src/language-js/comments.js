@@ -1,12 +1,14 @@
 "use strict";
 
-const privateUtil = require("../common/util");
-const sharedUtil = require("../common/util-shared");
 const {
-  addLeadingComment,
-  addTrailingComment,
-  addDanglingComment
-} = sharedUtil;
+  util: {
+    addLeadingComment,
+    addTrailingComment,
+    addDanglingComment,
+    getNextNonSpaceNonCommentCharacterIndex
+  }
+} = require('prettier');
+const privateUtil = require("../common/util");
 
 function handleOwnLineComment(comment, text, options, ast, isLastComment) {
   const { precedingNode, enclosingNode, followingNode } = comment;
@@ -528,7 +530,7 @@ function handleCommentAfterArrowParams(text, enclosingNode, comment, options) {
     return false;
   }
 
-  const index = sharedUtil.getNextNonSpaceNonCommentCharacterIndex(
+  const index = getNextNonSpaceNonCommentCharacterIndex(
     text,
     comment,
     options

@@ -1,3 +1,20 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "default-case": "off",
+    "max-len": "off",
+    "no-else-return": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-unused-expressions": "off",
+    "no-use-before-define": "off",
+    "operator-linebreak": "off",
+    "prefer-destructuring": "off",
+    "prefer-template": "off",
+    "quotes": "off",
+    "strict": "off"
+  }
 }
