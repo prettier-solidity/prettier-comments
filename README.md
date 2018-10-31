@@ -1,5 +1,9 @@
 # prettier-comments
 
+> Copypaste from: [https://github.com/prettier/prettier/blob/master/src/language-js/comments.js](https://github.com/prettier/prettier/blob/master/src/language-js/comments.js)
+
+## How to use it w/ `prettier-plugin-solidity`
+
 ```bash
 ➜  prettier-comments git:(master) ✗ yarn link
 yarn link v1.9.4
