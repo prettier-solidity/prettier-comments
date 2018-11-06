@@ -247,13 +247,13 @@ function handleIfStatementComments(
   }
 
   // Comments before `else`:
-  // - treat as trailing comments of the consequent, if it's a BlockStatement
+  // - treat as trailing comments of the trueBody, if it's a ExpressionStatement
   // - treat as a dangling comment otherwise
   if (
-    precedingNode === enclosingNode.consequent &&
-    followingNode === enclosingNode.alternate
+    precedingNode === enclosingNode.trueBody &&
+    followingNode === enclosingNode.falseBody
   ) {
-    if (precedingNode.type === "BlockStatement") {
+    if (precedingNode.type === "ExpressionStatement") {
       addTrailingComment(precedingNode, comment);
     } else {
       addDanglingComment(enclosingNode, comment);
@@ -261,22 +261,22 @@ function handleIfStatementComments(
     return true;
   }
 
-  if (followingNode.type === "BlockStatement") {
+  if (followingNode.type === "ExpressionStatement") {
     addBlockStatementFirstComment(followingNode, comment);
     return true;
   }
 
   if (followingNode.type === "IfStatement") {
-    addBlockOrNotComment(followingNode.consequent, comment);
+    addBlockOrNotComment(followingNode.trueBody, comment);
     return true;
   }
 
   // For comments positioned after the condition parenthesis in an if statement
-  // before the consequent without brackets on, such as
+  // before the trueBody without brackets on, such as
   // if (a) /* comment */ true,
   // we look at the next character to see if the following node
-  // is the consequent for the if statement
-  if (enclosingNode.consequent === followingNode) {
+  // is the trueBody for the if statement
+  if (enclosingNode.trueBody === followingNode) {
     addLeadingComment(followingNode, comment);
     return true;
   }
